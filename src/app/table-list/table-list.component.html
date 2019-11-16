@@ -1,0 +1,25 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Etape 1</ng-template>
+          <app-step1
+            [criteres]="criteres"
+            (selected)="updateSelected($event)"
+          ></app-step1>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Etape 2</ng-template>
+          <app-step2 [selected]="selected"></app-step2>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Terminer</ng-template>
+        <app-step3 [selected]="selected"></app-step3>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</div>
