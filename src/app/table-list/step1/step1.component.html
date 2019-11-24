@@ -31,10 +31,8 @@
                         <span class="check"></span>
                       </span>
                     </label>
+                    {{ critere.value }}
                   </div>
-                </td>
-                <td>
-                  {{ critere.value }}
                 </td>
               </tr>
             </tbody>
@@ -45,15 +43,13 @@
   </div>
   <div class="row">
     <div class="col-md-8">
-      <button mat-raised-button class="btn btn-info btn-lg pull-left">
-        <a routerLink="/file" target="_blank" style="color: white !important;"
-          >fichier</a
-        >
-      </button>
-      <button mat-raised-button class="btn btn-info btn-lg pull-left">
-        <a routerLink="/file" target="_blank" style="color: white !important;"
-          >fichier</a
-        >
+      <button
+        mat-raised-button
+        class="btn btn-info btn-lg pull-left"
+        (click)="generatePDF()"
+        [disabled]="selectedCriterias.length == 0"
+      >
+        Fichier de critères sélectionnés
       </button>
     </div>
     <div class="col-md-4">
@@ -63,6 +59,7 @@
         matStepperNext
         (click)="onSubmit()"
         class="btn btn-success btn-lg pull-right"
+        [disabled]="selectedCriterias.length == 0"
       >
         Evaluer
       </button>

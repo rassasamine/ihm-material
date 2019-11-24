@@ -3,11 +3,8 @@
     <div class="card-header card-header-tabs card-header-primary">
       <div class="nav-tabs-navigation">
         <div class="nav-tabs-wrapper">
-          <strong
-            ><span class="nav-tabs-title" style="font-size: 16px;"
-              >Vous etes invité à selectionner vos choix</span
-            ></strong
-          >
+          <strong><span class="nav-tabs-title" style="font-size: 16px;">Vous etes invité à selectionner vos
+              choix</span></strong>
         </div>
       </div>
     </div>
@@ -20,8 +17,20 @@
                 <td>
                   {{ critere.value }}
                 </td>
-                <td class="text-danger">
-                  <b>{{ critere.score }}</b>
+                <td>
+                  {{ critere.score }} %
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h5>
+                    Moyenne
+                  </h5>
+                </td>
+                <td>
+                  <h5 class="text-danger">
+                    <b>{{ avg | number:'2.1-2' }} %</b>
+                  </h5>
                 </td>
               </tr>
             </tbody>
@@ -32,24 +41,12 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <button
-        mat-raised-button
-        mat-button
-        matStepperPrevious
-        type="submit"
-        class="btn btn-info btn-lg pull-left"
-      >
+      <button mat-raised-button mat-button matStepperPrevious type="submit" class="btn btn-info btn-lg pull-left">
         Retour
       </button>
 
-      <button
-        mat-raised-button
-        mat-button
-        matStepperNext
-        type="submit"
-        class="btn btn-success btn-lg pull-right"
-        routerLink="/"
-      >
+      <button mat-raised-button mat-button matStepperNext type="submit" class="btn btn-success btn-lg pull-right"
+        routerLink="/">
         Terminer
       </button>
       <div class="clearfix"></div>

@@ -3,11 +3,8 @@
     <div class="card-header card-header-tabs card-header-primary">
       <div class="nav-tabs-navigation">
         <div class="nav-tabs-wrapper">
-          <strong
-            ><span class="nav-tabs-title" style="font-size: 16px;"
-              >Vous etes invité à selectionner vos choix</span
-            ></strong
-          >
+          <strong><span class="nav-tabs-title" style="font-size: 16px;">Vous etes invité à selectionner vos
+              choix</span></strong>
         </div>
       </div>
     </div>
@@ -19,16 +16,23 @@
               <tr *ngFor="let criteria of selected">
                 <td>
                   {{ criteria.value }}
+                  <i class="material-icons" [matTooltip]="criteria.definition">
+                    help
+                  </i>
                 </td>
                 <td>
-                  <mat-form-field class="example-full-width">
-                    <input
-                      matInput
-                      type="number"
-                      placeholder="Score"
-                      min="0"
-                      max="5"
-                    />
+                  <label id="example-radio-group-label">Score</label>
+
+                  <mat-radio-group aria-labelledby="radio-group-label" class="example-radio-group">
+                    <mat-radio-button *ngFor="let score of scores" class="example-radio-button" [value]="score"
+                      [checked]="score == 0" (change)="updateScore($event.value, criteria.id)">
+                      {{ score }}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </td>
+                <td>
+                  <mat-form-field>
+                    <input matInput type="text" placeholder="Justification" />
                   </mat-form-field>
                 </td>
               </tr>
@@ -40,24 +44,12 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <button
-        mat-raised-button
-        mat-button
-        matStepperPrevious
-        type="submit"
-        class="btn btn-info btn-lg pull-left"
-      >
+      <button mat-raised-button mat-button matStepperPrevious type="submit" class="btn btn-info btn-lg pull-left">
         Retour
       </button>
 
-      <button
-        mat-raised-button
-        mat-button
-        matStepperNext
-        type="submit"
-        class="btn btn-success btn-lg pull-right"
-        (click)="onSubmit()"
-      >
+      <button mat-raised-button mat-button matStepperNext type="submit" class="btn btn-success btn-lg pull-right"
+        (click)="onSubmit()">
         Calculer
       </button>
       <div class="clearfix"></div>
