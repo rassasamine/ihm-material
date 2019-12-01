@@ -3,11 +3,14 @@
     <div class="card-header card-header-tabs card-header-primary">
       <div class="nav-tabs-navigation">
         <div class="nav-tabs-wrapper">
-          <strong
-            ><span class="nav-tabs-title" style="font-size: 16px;"
-              >Vous etes invité à selectionner vos choix</span
-            ></strong
-          >
+          <strong><span class="nav-tabs-title" style="font-size: 16px;">Vous etes invité à selectionner vos
+              choix</span></strong>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary pull-right" data-toggle="modal"
+            data-target="#exampleModalCenter">
+            <i class="material-icons">add_circle_outline</i>
+            Ajouter critères
+          </button>
         </div>
       </div>
     </div>
@@ -20,13 +23,8 @@
                 <td>
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input
-                        name="checklist"
-                        class="form-check-input"
-                        type="checkbox"
-                        [value]="critere.id"
-                        (change)="checkStatus(critere.id)"
-                      />
+                      <input name="checklist" class="form-check-input" type="checkbox" [value]="critere.id"
+                        (change)="checkStatus(critere.id)" />
                       <span class="form-check-sign">
                         <span class="check"></span>
                       </span>
@@ -42,28 +40,60 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8">
-      <button
-        mat-raised-button
-        class="btn btn-info btn-lg pull-left"
-        (click)="generatePDF()"
-        [disabled]="selectedCriterias.length == 0"
-      >
-        Fichier de critères sélectionnés
+    <div class="col-md-2">
+      <button mat-raised-button class="btn btn-info btn-lg pull-left" (click)="generatePDF()"
+        [disabled]="selectedCriterias.length == 0">
+        Fichier
+      </button>
+    </div>
+    <div class="col-md-6">
+      <button mat-raised-button class="btn btn-info btn-lg pull-left" (click)="generatePDF(true)"
+        [disabled]="selectedCriterias.length == 0">
+        Fichier en détails
       </button>
     </div>
     <div class="col-md-4">
-      <button
-        mat-raised-button
-        mat-button
-        matStepperNext
-        (click)="onSubmit()"
-        class="btn btn-success btn-lg pull-right"
-        [disabled]="selectedCriterias.length == 0"
-      >
+      <button mat-raised-button mat-button matStepperNext (click)="onSubmit()" class="btn btn-success btn-lg pull-right"
+        [disabled]="selectedCriterias.length == 0">
         Evaluer
       </button>
       <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter critères</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addForm">
+          <div class="form-group">
+            <label for="name">Nom critère</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="definition">Definition</label>
+            <input type="text" class="form-control" id="definition" formControlName="definition">
+          </div>
+          <div class="form-group">
+            <label for="question">Question relative</label>
+            <input type="text" class="form-control" id="question" formControlName="question">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Annuler</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addCriteria()"
+          [disabled]="addForm.invalid">Ajouter</button>
+      </div>
     </div>
   </div>
 </div>
